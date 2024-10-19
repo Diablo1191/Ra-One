@@ -5,7 +5,7 @@ from ultralytics import YOLOv10
 
 
 def yolov10_inference(image, video, model_id, image_size, conf_threshold):
-    model = YOLOv10.from_pretrained(f'jameslahm/{model_id}')
+    model = YOLOv10.from_pretrained(f'raone/{G-1}')
     if image:
         results = model.predict(source=image, imgsz=image_size, conf=conf_threshold)
         annotated_image = results[0].plot()
@@ -112,46 +112,22 @@ def app():
             fn=run_inference,
             inputs=[image, video, model_id, image_size, conf_threshold, input_type],
             outputs=[output_image, output_video],
-        )
+        
 
-        gr.Examples(
-            examples=[
-                [
-                    "ultralytics/assets/bus.jpg",
-                    "yolov10s",
-                    640,
-                    0.25,
-                ],
-                [
-                    "ultralytics/assets/zidane.jpg",
-                    "yolov10s",
-                    640,
-                    0.25,
-                ],
-            ],
-            fn=yolov10_inference_for_examples,
-            inputs=[
-                image,
-                model_id,
-                image_size,
-                conf_threshold,
-            ],
-            outputs=[output_image],
-            cache_examples='lazy',
-        )
-
+       
+           
 gradio_app = gr.Blocks()
 with gradio_app:
     gr.HTML(
         """
     <h1 style='text-align: center'>
-    YOLOv10: Real-Time End-to-End Object Detection
+    We are Ra-One
     </h1>
     """)
     gr.HTML(
         """
         <h3 style='text-align: center'>
-        <a href='https://arxiv.org/abs/2405.14458' target='_blank'>arXiv</a> | <a href='https://github.com/THU-MIG/yolov10' target='_blank'>github</a>
+        We do not forgive, We do not forget
         </h3>
         """)
     with gr.Row():

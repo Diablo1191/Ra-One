@@ -182,6 +182,7 @@ def main(_args):
             box_coords = track.to_tlbr()
             class_label = track.get_class()
             
+            # Correctly count tracked objects
             if (track.track_id >= total_counted) and (frame_count % 10 == 0):
                 total_counted = track.track_id
 
@@ -192,7 +193,7 @@ def main(_args):
             image_full_path = os.path.join(save_path, image_name)
             cv2.imwrite(image_full_path, cropped_img)
 
-            color = color_palette[int(track.track_id) % len(color_palette)]
+            color = color_palette[track.track_id % len(color_palette)]
             color = [int(c * 255) for c in color]
 
             label_text = f'ID: {track.track_id} {class_label} {track.confidence:.2f}'
@@ -200,7 +201,7 @@ def main(_args):
 
         if FLAGS.output_video:
             output_writer.write(frame_data)
-        
+
         if FLAGS.display_output:
             cv2.imshow("Detection", frame_data)
             if cv2.waitKey(1) & 0xFF == ord('q'):

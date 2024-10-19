@@ -15,7 +15,7 @@ def RGB(event, x, y, flags, param):
 cv2.namedWindow('RGB')
 cv2.setMouseCallback('RGB', RGB)
 
-cap=cv2.VideoCapture('dronetreecount.mp4')
+cap=cv2.VideoCapture('drone_live_feed')
 my_file = open("coco1.txt", "r")
 data = my_file.read()
 class_list = data.split("\n")
@@ -63,7 +63,7 @@ while True:
               
                  
                  
-    cv2.line(frame,(2,485),(1018,485),(0,0,255),2)      #for more accuracy  i change the line coordinates so this is new coordinates#
+    cv2.line(frame,(2,485),(1018,485),(0,0,255),2)      #for more accuracy  i changed the line coordinates so this is new coordinates#
 
     counting=len(plantcount)
    
@@ -73,7 +73,7 @@ while True:
     
     
     cv2.imshow("RGB", frame)
-    # Break the loop if 'q' is pressed
+    # Break the loop if 'q' is pressed i think
     if cv2.waitKey(2) & 0xFF == ord('q'):
         break
 
